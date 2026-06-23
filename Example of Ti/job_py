@@ -1,0 +1,30 @@
+#!/bin/bash
+#SBATCH --time=1:00:00        # walltime
+#SBATCH --nodes=1             # number of nodes
+#SBATCH -o python_job-%j.out  # output log file
+#SBATCH --ntasks=1            # Only 1 task needed for a simple python script
+#SBATCH --account=notchpeak-shared-short 
+#SBATCH --partition=notchpeak-shared-short
+#SBATCH --gres=gpu:1          
+
+cd $SLURM_SUBMIT_DIR
+
+# 1. Start clean
+module purge
+
+# 2. Load Miniconda
+#module load miniconda3
+
+# 3. Activate the environment where ASE is installed
+#source activate phonopy
+source activate deepmd
+#source activate phonopy
+# --- CRITICAL CHANGE: DO NOT LOAD DEEPMD MODULE HERE ---
+# module load deepmd/2.1.1  <-- REMOVED because it overwrites your conda paths
+
+# 4. Verify debug info (optional but helpful)
+echo "Python being used: $(which python)"
+echo "Environment: $CONDA_DEFAULT_ENV"
+
+# 5. Run the script
+python driver_script.py

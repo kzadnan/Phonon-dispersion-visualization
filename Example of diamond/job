@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH --time=2:00:00 # walltime, abbreviated by -t
+#SBATCH --nodes=1 # number of cluster nodes, abbreviated by -N
+#SBATCH -o slurm-%j.out-%N # name of the stdout, using the job number (%j) and the first node (%N)
+#SBATCH --ntasks=16 # number of MPI tasks, abbreviated by -n # additional information for allocated clusters
+#SBATCH --account=notchpeak-shared-short # account - abbreviated by -A
+#SBATCH --partition=notchpeak-shared-short # partition, abbreviated by -p # # set data and working directories
+#SBATCH --gres=gpu:1
+
+cd $SLURM_SUBMIT_DIR
+
+module load deepmd/2.1.1 #chpc
+
+mpirun -np 1 -genv OMP_NUM_THREADS $SLURM_NTASKS lmp<inputfile.txt>log.txt

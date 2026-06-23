@@ -1,0 +1,26 @@
+# Initialize simulation
+units metal
+dimension 3
+boundary p p p
+atom_style atomic
+
+# Read the displaced structure
+read_data C_unitcell_new.txt
+
+# Define interatomic potential
+pair_style deepmd graph-compress.pb
+pair_coeff * * # --- RELAXATION SECTION ---
+
+# 2. Optional: Relax the cell dimensions (lattice constants)
+fix 2 all box/relax iso 0.0 vmax 0.001
+
+# 3. Perform the minimization
+minimize 1.0e-12 1.0e-10 10000 100000
+
+# 4. Save the final relaxed atomic positions and box dimensions
+write_data final_relaxed_structure.data
+
+# 5. Optional: Save a single snapshot with forces for verification
+write_dump all custom final_relaxed_snapshot.lammpstrj id type x y z fx fy fz
+
+print "Relaxed structure has been saved."
