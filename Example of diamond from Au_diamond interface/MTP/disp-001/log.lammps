@@ -1,0 +1,25 @@
+LAMMPS (2 Aug 2023 - Update 1)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+Loaded 1 plugins from /uufs/chpc.utah.edu/common/home/u1447873/.conda/envs/deepmd/lib/deepmd_lmp
+# Initialize simulation
+units metal
+dimension 3
+boundary p p p
+atom_style atomic
+
+# Read the displaced structure
+read_data disp-001.lammps
+Reading data file ...
+  triclinic box = (0 0 0) to (7.5005263 6.4956463 6.1241541) with tilt (3.7502631 3.7502631 2.1652154)
+WARNING: Triclinic box skew is large. LAMMPS will run inefficiently. (src/domain.cpp:220)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  54 atoms
+  read_data CPU = 0.013 seconds
+
+# Define interatomic potential
+
+pair_style mlip mlip.ini
+ERROR: Unrecognized pair style 'mlip' (src/force.cpp:271)
+Last command: pair_style mlip mlip.ini

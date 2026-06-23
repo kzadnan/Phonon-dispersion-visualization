@@ -1,0 +1,11 @@
+LAMMPS (29 Oct 2020)
+# Initialize simulation
+units metal
+dimension 3
+boundary p p p
+atom_style atomic
+
+# Read the displaced structure
+read_data disp-001.lammps
+Reading data file ...
+ERROR on proc 0: Cannot open file disp-001.lammps: No such file or directory (../read_data.cpp:1965)

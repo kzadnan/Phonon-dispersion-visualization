@@ -1,0 +1,71 @@
+LAMMPS (29 Oct 2020)
+# Initialize simulation
+units metal
+dimension 3
+boundary p p p
+atom_style atomic
+
+# Read the displaced structure
+read_data disp-001.lammps
+Reading data file ...
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (7.5005263 6.4956463 6.1241541) with tilt (3.7502631 3.7502631 2.1652154)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  54 atoms
+  read_data CPU = 0.003 seconds
+
+# Define interatomic potential
+
+pair_style mlip mlip.ini
+pair_coeff * *
+
+# Apply fix to ensure static calculation
+fix 1 all setforce NULL NULL NULL
+
+# Output forces
+thermo_style custom step temp pe press
+dump 1 all custom 1 forces.lammpstrj id type x y z fx fy fz
+run 0
+Neighbor list info ...
+  update every 1 steps, delay 10 steps, check yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 7
+  ghost atom cutoff = 7
+  binsize = 3.5, bins = 5 3 2
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair mlip, perpetual
+      attributes: full, newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 4.419 | 4.419 | 4.419 Mbytes
+Step Temp PotEng Press 
+       0            0   -302.88377    152143.78 
+Loop time of 2.31992e-06 on 1 procs for 0 steps with 54 atoms
+
+86.2% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 2.32e-06   |            |       |100.00
+
+Nlocal:        54.0000 ave          54 max          54 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:        1946.00 ave        1946 max        1946 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:        0.00000 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:      14796.0 ave       14796 max       14796 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 14796
+Ave neighs/atom = 274.00000
+Neighbor list builds = 0
+Dangerous builds = 0
+Total wall time: 0:00:00
