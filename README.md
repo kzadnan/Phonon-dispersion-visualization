@@ -1,4 +1,4 @@
-# Phonon Dispersion Visualization
+# Phonon Dispersion Visualization from MLIP-MD
 
 This module utilizes **Phonopy** to generate phonon eigenvectors and atomic displacement patterns. The resulting atomic motions at specific wavevector points can be exported and rendered using **OVITO** or other compatible structural visualization software.
 
