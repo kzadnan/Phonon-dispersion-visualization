@@ -1,0 +1,18 @@
+# LAMMPS data file written by OVITO Basic 3.15.4
+
+2 atoms
+2 atom types
+
+0.0 3.58169454 xlo xhi
+0.0 3.58169454 ylo yhi
+0.0 3.58169454 zlo zhi
+
+Masses
+
+1 12.0107  # C
+2 91.224  # Zr
+
+Atoms  # atomic
+
+1 2 0.0 0.0 0.0
+2 2 1.79084727 1.79084727 1.79084727

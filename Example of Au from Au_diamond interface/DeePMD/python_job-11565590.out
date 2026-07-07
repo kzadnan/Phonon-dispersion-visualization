@@ -1,0 +1,10 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) chpc/1.0
+Python being used: /uufs/chpc.utah.edu/common/home/u1447873/.conda/envs/deepmd/bin/python
+Environment: deepmd
+Traceback (most recent call last):
+  File "/scratch/general/vast/khalid/GaN_Au_diamond/AIMD/Au/mlip/03.dispersion_mlip/driver_script.py", line 11, in <module>
+    from make_sposcar import make_sposcar
+ModuleNotFoundError: No module named 'make_sposcar'
