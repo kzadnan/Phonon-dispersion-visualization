@@ -1,0 +1,34 @@
+# Example DFT / VASP phonon force workflow
+# 1) Prepare displaced POSCARs + INCAR/KPOINTS/POTCAR
+# 2) Submit jobs (or run locally if vasp_cmd is available)
+# 3) Collect vasprun.xml -> FORCE_CONSTANTS -> properties
+structure_file: POSCAR
+structure_format: vasp
+species_order: [C]
+supercell: [2, 2, 2]
+displacement: 0.01
+mesh: [16, 16, 16]
+backend: vasp
+vasp_cmd: vasp_std
+encut: 520.0
+ediff: 1.0e-8
+kmesh: [1, 1, 1]
+ncore: 4
+# Set these for automatic POTCAR concatenation:
+# potcar_dir: /path/to/PBE
+# potcar_map:
+#   C: C
+skip_force_calc: true
+write_job_script: true
+job_script_name: job_vasp.sh
+slurm_ntasks: 16
+slurm_time: "24:00:00"
+work_dir: "Example of diamond"
+stages:
+  - prepare_structure
+  - make_supercell
+  - make_displacements
+  - prepare_calculations
+  # - run_forces          # enable when VASP is available
+  # - force_constants
+  # - properties

@@ -1,0 +1,21 @@
+# Auto-generated workflow config
+structure_file: Mo_primitive_cell.txt
+structure_format: lammps-data
+species_map:
+  1: C
+  2: Mo
+supercell: [4, 4, 4]
+displacement: 0.01
+mesh: [16, 16, 16]
+backend: mtp
+mtp_potential: pot.mtp
+mlip_ini: mlip.ini
+lammps_cmd: lmp
+lammps_input: inputfile.txt
+data_filename: disp.lammps
+work_dir: "Example of Mo from Mo_diamond interface"
+qpoints:
+  Gamma: [0.0, 0.0, 0.0]
+  H: [0.5, -0.5, 0.5]
+  N: [0.0, 0.0, 0.5]
+  P: [0.25, 0.25, 0.25]
