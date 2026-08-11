@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phonopy-mlip"
+version = "1.0.0"
+description = "Generalized phonon workflows for DeePMD, MTP, and VASP"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Khalid Zobaid Adnan" }]
+dependencies = [
+  "numpy",
+  "ase",
+  "phonopy",
+  "PyYAML",
+  "matplotlib",
+]
+
+[project.optional-dependencies]
+seekpath = ["seekpath"]
+
+[project.scripts]
+phonopy-mlip = "phonopy_mlip.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["phonopy_mlip*"]
+
+[tool.setuptools.package-data]
+phonopy_mlip = ["templates/*"]

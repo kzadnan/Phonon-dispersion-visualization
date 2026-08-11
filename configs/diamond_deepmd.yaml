@@ -1,0 +1,19 @@
+# Diamond phonon workflow with DeePMD
+structure_file: C_unitcell_new.txt
+structure_format: lammps-data
+species_map:
+  1: C
+supercell: [3, 3, 3]
+displacement: 0.01
+mesh: [16, 16, 16]
+backend: deepmd
+deepmd_model: graph-compress.pb
+lammps_cmd: lmp
+lammps_input: inputfile.txt
+data_filename: disp.lammps
+work_dir: "Example of diamond"
+# FCC / diamond high-symmetry points for mode animations
+qpoints:
+  Gamma: [0.0, 0.0, 0.0]
+  X: [0.5, 0.0, 0.5]
+  L: [0.5, 0.5, 0.5]

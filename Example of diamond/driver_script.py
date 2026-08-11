@@ -1,51 +1,47 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Dec  9 11:57:40 2025
+Generalized driver for the diamond / DeePMD example.
 
-@author: Khalid Zobaid Adnan
+Prefer running from the repository root:
+    python -m phonopy_mlip -c configs/diamond_deepmd.yaml
+
+This script remains as a local convenience entry point.
 """
 
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from phonopy_mlip import PhononWorkflow, WorkflowConfig
 
 
-import numpy as np
-from make_sposcar import make_sposcar
-from make_displaced_structures import make_displaced_structures
-from Lammps_poscar import Lammps_poscar
-from poscar_lammps_ase import POSCAR_LAMMPS_ASE
-from organize import organize_folders
-from lmp_run import running_lammps
-from get_force_constants import FORCE_CONSTS
-from get_properties_gpt import properties
-
-#Concerting the Conventional cell to POSCAR format
-species_map=  {1: 'C'}
-
-deepmd_order = [species_map[i] for i in sorted(species_map.keys())]
-
- #C480N0Al0Ti0Ga0Au0
-Lammps_poscar("C_unitcell_new.txt","POSCAR",species_map)
-## Defining the supercell size 2*2*2
-supercell_matrix=np.array([[3,0,0],[0,3,0],[0,0,3]])#4*np.diag([1,1,1])
-## Making SPOSCAR
-make_sposcar("POSCAR", supercell_matrix)
-## Making POSCAR-001 -- From irreducible minimum perturbations
-displacement=0.1
-make_displaced_structures("POSCAR",supercell_matrix,displacement)
-##Converting the POSCARs to LAMMPS format
-POSCAR_LAMMPS_ASE(deepmd_order)
-## Organize files for Force calculations
-organize_folders()
-## running lammps with deepmd is the issue for each folder in Windows.
-running_lammps()
-##Getting the force constants
-FORCE_CONSTS(supercell_matrix)
-#%% Getting running kmesh calculations for phonopy 
-mesh=[16,16,16]
-properties(supercell_matrix, mesh)
+def main() -> None:
+    config = WorkflowConfig(
+        structure_file="C_unitcell_new.txt",
+        structure_format="lammps-data",
+        species_map={1: "C"},
+        supercell=[3, 3, 3],
+        displacement=0.01,
+        mesh=[16, 16, 16],
+        backend="deepmd",
+        deepmd_model="graph-compress.pb",
+        lammps_cmd="lmp",
+        lammps_input="inputfile.txt",
+        data_filename="disp.lammps",
+        work_dir=".",
+        qpoints={
+            "Gamma": [0.0, 0.0, 0.0],
+            "X": [0.5, 0.0, 0.5],
+            "L": [0.5, 0.5, 0.5],
+        },
+    )
+    PhononWorkflow(config).run()
 
 
-
-
-
-
-
+if __name__ == "__main__":
+    main()

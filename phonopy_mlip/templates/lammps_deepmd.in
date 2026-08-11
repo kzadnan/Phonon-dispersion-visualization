@@ -1,0 +1,16 @@
+# Auto-generated DeePMD force input (phonopy_mlip)
+units metal
+dimension 3
+boundary p p p
+atom_style atomic
+
+variable fname string disp.lammps
+read_data ${fname}
+
+pair_style deepmd graph-compress.pb
+pair_coeff * *
+
+fix 1 all setforce NULL NULL NULL
+thermo_style custom step temp pe press
+dump 1 all custom 1 forces.lammpstrj id type x y z fx fy fz
+run 0
