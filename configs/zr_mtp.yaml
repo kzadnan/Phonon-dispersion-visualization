@@ -1,10 +1,10 @@
 # Auto-generated workflow config
-structure_file: C_unitcell_new.txt
+structure_file: Zr_primitive_cell.txt
 structure_format: lammps-data
 species_map:
-  1: Au
-  2: C
-supercell: [3, 3, 3]
+  1: C
+  2: Zr
+supercell: [4, 4, 4]
 displacement: 0.01
 mesh: [16, 16, 16]
 backend: mtp
@@ -13,8 +13,9 @@ mlip_ini: mlip.ini
 lammps_cmd: lmp
 lammps_input: inputfile.txt
 data_filename: disp.lammps
-work_dir: "Example of diamond from Au_diamond interface/MTP"
+work_dir: "Example of Zr from Zr_diamond interface"
 qpoints:
   Gamma: [0.0, 0.0, 0.0]
-  X: [0.5, 0.0, 0.5]
-  L: [0.5, 0.5, 0.5]
+  A: [0.0, 0.0, 0.5]
+  M: [0.5, 0.0, 0.0]
+  K: [0.3333333333333333, 0.3333333333333333, 0.0]

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Backward-compatible organize helper using DeePMD defaults."""
+"""Backward-compatible organize helper (deepmd)."""
 from __future__ import annotations
 import sys
 from pathlib import Path

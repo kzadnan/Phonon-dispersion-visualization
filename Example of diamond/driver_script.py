@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Generalized driver for the diamond / DeePMD example.
+Generalized driver using phonopy_mlip.
 
-Prefer running from the repository root:
     python -m phonopy_mlip -c configs/diamond_deepmd.yaml
-
-This script remains as a local convenience entry point.
 """
 
 from __future__ import annotations

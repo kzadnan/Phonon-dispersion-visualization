@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Generalized driver for the Ti / DeePMD example.
+Generalized driver using phonopy_mlip.
 
     python -m phonopy_mlip -c configs/ti_deepmd.yaml
 """
@@ -35,7 +35,7 @@ def main() -> None:
             "Gamma": [0.0, 0.0, 0.0],
             "A": [0.0, 0.0, 0.5],
             "M": [0.5, 0.0, 0.0],
-            "K": [1.0 / 3.0, 1.0 / 3.0, 0.0],
+            "K": [0.3333333333333333, 0.3333333333333333, 0.0],
         },
     )
     PhononWorkflow(config).run()

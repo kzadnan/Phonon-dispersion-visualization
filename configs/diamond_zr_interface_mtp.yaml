@@ -2,8 +2,8 @@
 structure_file: C_unitcell_new.txt
 structure_format: lammps-data
 species_map:
-  1: Au
-  2: C
+  1: C
+  2: Zr
 supercell: [3, 3, 3]
 displacement: 0.01
 mesh: [16, 16, 16]
@@ -13,7 +13,7 @@ mlip_ini: mlip.ini
 lammps_cmd: lmp
 lammps_input: inputfile.txt
 data_filename: disp.lammps
-work_dir: "Example of diamond from Au_diamond interface/MTP"
+work_dir: "Example of diamond from Zr_diamond interface/MTP"
 qpoints:
   Gamma: [0.0, 0.0, 0.0]
   X: [0.5, 0.0, 0.5]

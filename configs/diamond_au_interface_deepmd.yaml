@@ -7,13 +7,12 @@ species_map:
 supercell: [3, 3, 3]
 displacement: 0.01
 mesh: [16, 16, 16]
-backend: mtp
-mtp_potential: pot.mtp
-mlip_ini: mlip.ini
+backend: deepmd
+deepmd_model: graph-compress.pb
 lammps_cmd: lmp
 lammps_input: inputfile.txt
 data_filename: disp.lammps
-work_dir: "Example of diamond from Au_diamond interface/MTP"
+work_dir: "Example of diamond from Au_diamond interface/DeePMD"
 qpoints:
   Gamma: [0.0, 0.0, 0.0]
   X: [0.5, 0.0, 0.5]
